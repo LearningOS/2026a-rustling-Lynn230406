@@ -2,7 +2,7 @@
   "schema": 1,
   "courseId": 2084,
   "repository": "LearningOS/2026a-rustling-Lynn230406",
-  "commit": "aaafed08d4a2e8e03eee7af05457c571a5c343e6",
+  "commit": "8aab36d8f13bbd36fda4d3ffd627fe5f46865043",
   "score": 39,
   "totalScore": 110,
   "exercises": [
@@ -778,9 +778,9 @@
     }
   ],
   "student": "Lynn230406",
-  "runId": "41308172880",
+  "runId": "41308291413",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
