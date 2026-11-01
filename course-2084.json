@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2084,
   "repository": "LearningOS/2026a-rustling-Lynn230406",
-  "commit": "dfaff65fc6d738b46d8f9a69952ddc2ef96fe5a0",
-  "score": 62,
+  "commit": "0e8fb0338396687caa0b36bc3b6ca4bd5190bffe",
+  "score": 63,
   "totalScore": 110,
   "exercises": [
     {
@@ -450,9 +450,9 @@
     {
       "name": "quiz3",
       "max": 1,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 1
+      "score": 1,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "lifetimes1",
@@ -778,9 +778,9 @@
     }
   ],
   "student": "Lynn230406",
-  "runId": "41311491338",
+  "runId": "41311631711",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
