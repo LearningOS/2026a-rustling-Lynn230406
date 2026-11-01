@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2084,
   "repository": "LearningOS/2026a-rustling-Lynn230406",
-  "commit": "7e5fe2fbbced50e3cec4c8d1936f75bbd22760df",
-  "score": 35,
+  "commit": "6ceab24d2a99054d95d40a12e1280c7ce6b331fa",
+  "score": 36,
   "totalScore": 110,
   "exercises": [
     {
@@ -254,9 +254,9 @@
     {
       "name": "enums3",
       "max": 1,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 1
+      "score": 1,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "strings1",
@@ -778,9 +778,9 @@
     }
   ],
   "student": "Lynn230406",
-  "runId": "41307059144",
+  "runId": "41307386295",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
