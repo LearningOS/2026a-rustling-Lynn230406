@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2084,
   "repository": "LearningOS/2026a-rustling-Lynn230406",
-  "commit": "a358fc86287729d66ae0ed2e3b7bedbd1f13c5c0",
-  "score": 38,
+  "commit": "21ddb4924715f6c29af2a4f46bf6cbd9d7963853",
+  "score": 39,
   "totalScore": 110,
   "exercises": [
     {
@@ -275,9 +275,9 @@
     {
       "name": "strings3",
       "max": 1,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 1
+      "score": 1,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "strings4",
@@ -778,9 +778,9 @@
     }
   ],
   "student": "Lynn230406",
-  "runId": "41307927771",
+  "runId": "41308078975",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
