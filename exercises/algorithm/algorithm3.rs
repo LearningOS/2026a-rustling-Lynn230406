@@ -3,11 +3,21 @@
 	This problem requires you to implement a sorting algorithm
 	you can use bubble sorting, insertion sorting, heap sorting, etc.
 */
-// I AM NOT DONE
 
-fn sort<T>(array: &mut [T]){
-	//TODO
+fn sort<T: PartialOrd>(array: &mut [T]) {
+    let len = array.len();
+    // 经典的冒泡排序
+    for i in 0..len {
+        // 每一轮把最大的元素“冒泡”到最后，所以内层循环可以减少 i 次
+        for j in 0..len - 1 - i {
+            if array[j] > array[j + 1] {
+                // 用 Rust 提供的 swap 方法直接交换，避免借用冲突
+                array.swap(j, j + 1);
+            }
+        }
+    }
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;

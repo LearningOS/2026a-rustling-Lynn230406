@@ -2,7 +2,6 @@
 	heap
 	This question requires you to implement a binary heap function
 */
-// I AM NOT DONE
 
 use std::cmp::Ord;
 use std::default::Default;
@@ -37,7 +36,19 @@ where
     }
 
     pub fn add(&mut self, value: T) {
-        //TODO
+        self.count += 1;
+        self.items.push(value);
+        let mut current = self.count;
+        // 上浮（Percolate Up）
+        while current > 1 {
+            let parent = self.parent_idx(current);
+            if (self.comparator)(&self.items[current], &self.items[parent]) {
+                self.items.swap(current, parent);
+                current = parent;
+            } else {
+                break;
+            }
+        }
     }
 
     fn parent_idx(&self, idx: usize) -> usize {
@@ -57,8 +68,20 @@ where
     }
 
     fn smallest_child_idx(&self, idx: usize) -> usize {
-        //TODO
-		0
+        let left = self.left_child_idx(idx);
+        let right = self.right_child_idx(idx);
+
+        // 如果有右孩子，比较左右哪个更优先（更小或更大），返回优先的那个
+        if right <= self.count {
+            if (self.comparator)(&self.items[left], &self.items[right]) {
+                left
+            } else {
+                right
+            }
+        } else {
+            // 只有左孩子
+            left
+        }
     }
 }
 
@@ -66,12 +89,10 @@ impl<T> Heap<T>
 where
     T: Default + Ord,
 {
-    /// Create a new MinHeap
     pub fn new_min() -> Self {
         Self::new(|a, b| a < b)
     }
 
-    /// Create a new MaxHeap
     pub fn new_max() -> Self {
         Self::new(|a, b| a > b)
     }
@@ -84,8 +105,30 @@ where
     type Item = T;
 
     fn next(&mut self) -> Option<T> {
-        //TODO
-		None
+        if self.count == 0 {
+            return None;
+        }
+
+        // 1. 把堆顶（索引1）和最后一个元素交换
+        self.items.swap(1, self.count);
+        
+        // 2. 把最后一个元素弹出来（就是原本的堆顶）
+        let result = self.items.pop();
+        self.count -= 1;
+
+        // 3. 下沉（Percolate Down），恢复堆的性质
+        let mut current = 1;
+        while self.children_present(current) {
+            let smallest = self.smallest_child_idx(current);
+            if (self.comparator)(&self.items[smallest], &self.items[current]) {
+                self.items.swap(current, smallest);
+                current = smallest;
+            } else {
+                break;
+            }
+        }
+
+        result
     }
 }
 
@@ -112,6 +155,7 @@ impl MaxHeap {
         Heap::new(|a, b| a > b)
     }
 }
+
 
 #[cfg(test)]
 mod tests {

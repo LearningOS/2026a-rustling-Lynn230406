@@ -2,7 +2,6 @@
 	single linked list merge
 	This problem requires you to merge two ordered singly linked lists into one ordered singly linked list
 */
-// I AM NOT DONE
 
 use std::fmt::{self, Display, Formatter};
 use std::ptr::NonNull;
@@ -69,15 +68,65 @@ impl<T> LinkedList<T> {
             },
         }
     }
-	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
-	{
-		//TODO
-		Self {
-            length: 0,
-            start: None,
-            end: None,
+        pub fn merge(list_a: LinkedList<T>, list_b: LinkedList<T>) -> Self 
+    where
+        T: PartialOrd, // 加个约束，告诉编译器 T 可以比较大小
+    {
+        // 1. 创建一个新的空链表作为结果
+        let mut merged = Self::new();
+        
+        // 2. 拿到两个链表的头节点指针
+        let mut ptr_a = list_a.start;
+        let mut ptr_b = list_b.start;
+
+        // 3. 记录新链表的尾部指针
+        let mut tail: Option<NonNull<Node<T>>> = None;
+
+        // 4. 只要还有节点，就继续循环
+        while ptr_a.is_some() || ptr_b.is_some() {
+            let next_node: NonNull<Node<T>>;
+
+            unsafe {
+                // 比较 a 和 b 的值
+                match (ptr_a, ptr_b) {
+                    (Some(a), Some(b)) => {
+                        // 如果 a 的值小于等于 b 的值，把 a 摘下来
+                        if (*a.as_ptr()).val <= (*b.as_ptr()).val {
+                            next_node = a;
+                            ptr_a = (*a.as_ptr()).next; // 移动 a 的指针
+                        } else {
+                            // 否则把 b 摘下来
+                            next_node = b;
+                            ptr_b = (*b.as_ptr()).next; // 移动 b 的指针
+                        }
+                    }
+                    // 如果其中一个链表空了，直接把另一个剩下的全接上
+                    (Some(a), None) => {
+                        next_node = a;
+                        ptr_a = (*a.as_ptr()).next;
+                    }
+                    (None, Some(b)) => {
+                        next_node = b;
+                        ptr_b = (*b.as_ptr()).next;
+                    }
+                    (None, None) => break, // 理论上进不来，加上为了安全
+                }
+
+                // 把摘下来的节点接到新链表后面
+                if merged.start.is_none() {
+                    merged.start = Some(next_node); // 第一个节点作为头
+                } else {
+                    (*tail.unwrap().as_ptr()).next = Some(next_node);
+                }
+                tail = Some(next_node); // 更新尾指针
+            }
         }
-	}
+
+        // 收尾工作
+        merged.end = tail;
+        merged.length = list_a.length + list_b.length;
+        merged
+    }
 }
 
 impl<T> Display for LinkedList<T>
